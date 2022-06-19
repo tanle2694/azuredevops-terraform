@@ -54,7 +54,6 @@ variable "kubernetes_version" {
 variable "cluster_dns_prefix" {
   type        = string
   description = "DNS prefix specified when creating the managed cluster."
-  default     = "quortex"
 }
 
 variable "service_principal_id" {
@@ -70,7 +69,7 @@ variable "service_principal_secret" {
 variable "cluster_network_plugin" {
   type        = string
   description = "Network plugin to use for networking. Currently supported values are azure and kubenet."
-  default     = "azure"
+  default     = "kubenet"
 }
 
 variable "cluster_dns_service_ip" {
@@ -91,17 +90,16 @@ variable "cluster_service_cidr" {
   default     = "10.0.0.0/16"
 }
 
-# variable "cluster_pod_cidr" {
-#   type        = string
-#   description = "The CIDR to use for pod IP addresses. This field can only be set when network_plugin is set to kubenet."
-#   default     = null
-# }
-
-variable "cluster_outbound_ip_name" {
+variable "cluster_pod_cidr" {
   type        = string
-  description = "The name of the public IP address used for cluster's outbound traffic."
-  default     = "quortex-outbound"
+  description = "The CIDR to use for pod IP addresses. This field can only be set when network_plugin is set to kubenet."
+  default     = "10.244.0.0/16"
 }
+
+# variable "cluster_outbound_ip_name" {
+#   type        = string
+#   description = "The name of the public IP address used for cluster's outbound traffic."
+# }
 
 variable "node_pool_default" {
   type        = any
@@ -120,3 +118,4 @@ variable "tags" {
   description = "Tags to apply to resources. A list of key->value pairs."
   default     = {}
 }
+variable "private_dns_zone_id" {}

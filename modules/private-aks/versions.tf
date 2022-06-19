@@ -1,4 +1,3 @@
-# Taken from https://registry.terraform.io/modules/quortex/aks-cluster/azurerm/0.1.0?tab=inputs
 /**
  * Copyright 2020 Quortex
  *
@@ -15,9 +14,10 @@
  * limitations under the License.
  */
 
-# azurerm provider configuration
-# versions constrints defined in versions.tf
-provider "azurerm" {
-  subscription_id = var.subscription_id
-  features {}
+terraform {
+  # required_version = "~> 0.12.6"
+
+  required_providers {
+    azurerm = ">= 2"
+  }
 }
